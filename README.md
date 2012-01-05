@@ -1,4 +1,4 @@
-This is a simple scaffold for packaging a Ruby app to run on Windows Azure.
+This is a simple scaffold for packaging a Ruby app to run on Windows Azure, inspired by Steve Marx's <https://github.com/smarx/pythonrole>.
 
 Prerequisites
 =============
