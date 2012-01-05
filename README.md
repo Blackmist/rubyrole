@@ -16,8 +16,8 @@ variable.
 2. Run `run.cmd` to build and run the application locally. When
 running locally, ruby.exe must be in the path. (It is not automatically
 installed as it is in the cloud.)
-3. Run `pack.cmd` to output `PackAndRun.cspkg`. That file, along with
-`ServiceConfiguration.cscfg` is what you need to deploy via the Windows Azure
+3. Run `pack.cmd` to output `RubyRole.cspkg`. That file, along with
+`ServiceConfiguration.Cloud.cscfg` is what you need to deploy via the Windows Azure
 portal (or with some other tool) to get the app running in the cloud.
 
 Notes
