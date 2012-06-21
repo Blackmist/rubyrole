@@ -2,7 +2,7 @@ This is a simple scaffold for packaging a Ruby app to run on Windows Azure, insp
 
 Prerequisites
 =============
-This sample requires a Windows operating system and at least version 1.6 of the
+This sample requires a Windows operating system and at least version 1.7 of the
 Windows Azure SDK (available at <http://www.windowsazure.com/en-us/develop/overview/>). 
 This sample was devoloped using the `Other` language version of the SDK, but should work with all language versions.
 
