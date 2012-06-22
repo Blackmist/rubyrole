@@ -1,10 +1,9 @@
-REM Strip the trailing backslash (if present)
-if %RUBY_PATH:~-1%==\ SET RUBY_PATH=%RUBY_PATH:~0,-1%
+REM Skip pathing setup if we're running under the emulator
+if "%EMULATED%"=="true" goto :runapp
 
 cd /d "%~dp0"
 
-set PATH=%PATH%;%RUBY_PATH%\bin;%RUBY_PATH%\lib\ruby\gems\1.9.1\bin;
-
+:runapp
 cd app
 
 ruby app.rb

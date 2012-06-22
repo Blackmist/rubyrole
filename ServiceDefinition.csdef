@@ -1,56 +1,47 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ServiceDefinition name="RubyRole" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition">
-    <WorkerRole name="WorkerRole" vmsize="Small">
-        <Startup>
-            <Task commandLine="installRuby.cmd" executionContext="elevated">
-                <Environment>
-                    <Variable name="EMULATED">
-                        <RoleInstanceValue xpath="/RoleEnvironment/Deployment/@emulated" />
-                    </Variable>
-                    <Variable name="RUBY_PATH">
-                        <RoleInstanceValue xpath="/RoleEnvironment/CurrentInstance/LocalResources/LocalResource[@name='ruby']/@path" />
-                    </Variable>
-                </Environment>
-            </Task>
-            <Task commandLine="installDK.cmd" executionContext="elevated">
-                <Environment>
-                    <Variable name="EMULATED">
-                        <RoleInstanceValue xpath="/RoleEnvironment/Deployment/@emulated" />
-                    </Variable>
-                    <Variable name="RUBY_PATH">
-                        <RoleInstanceValue xpath="/RoleEnvironment/CurrentInstance/LocalResources/LocalResource[@name='ruby']/@path" />
-                    </Variable>
-                </Environment>
-            </Task>
-            <Task commandLine="installDependencies.cmd" executionContext="elevated">
-                <Environment>
-                    <Variable name="RUBY_PATH">
-                        <RoleInstanceValue xpath="/RoleEnvironment/CurrentInstance/LocalResources/LocalResource[@name='ruby']/@path" />
-                    </Variable>
-                </Environment>
-            </Task>
-        </Startup>
-        <Runtime>
-            <Environment>
-                <Variable name="ADDRESS">
-                    <RoleInstanceValue xpath="/RoleEnvironment/CurrentInstance/Endpoints/Endpoint[@name='HttpIn']/@address" />
-                </Variable>
-                <Variable name="PORT">
-                    <RoleInstanceValue xpath="/RoleEnvironment/CurrentInstance/Endpoints/Endpoint[@name='HttpIn']/@port" />
-                </Variable>
-                <Variable name="RUBY_PATH">
-                    <RoleInstanceValue xpath="/RoleEnvironment/CurrentInstance/LocalResources/LocalResource[@name='ruby']/@path" />
-                </Variable>
-            </Environment>
-            <EntryPoint>
-                <ProgramEntryPoint commandLine="run.cmd" setReadyOnProcessStart="true" />
-            </EntryPoint>
-        </Runtime>
-        <Endpoints>
-            <InputEndpoint name="HttpIn" protocol="tcp" port="80" />
-        </Endpoints>
-        <LocalResources>
-            <LocalStorage name="ruby" cleanOnRoleRecycle="true" sizeInMB="1000" />
-        </LocalResources>
-    </WorkerRole>
+<?xml version="1.0"?>
+<ServiceDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="RubyRole" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition">
+  <WorkerRole name="WorkerRole">
+    <Imports>
+      <Import moduleName="RemoteForwarder" />
+      <Import moduleName="RemoteAccess" />
+    </Imports>
+    <Startup>
+      <Task commandLine="installRuby.cmd" executionContext="elevated">
+        <Environment>
+          <Variable name="EMULATED">
+            <RoleInstanceValue xpath="/RoleEnvironment/Deployment/@emulated" />
+          </Variable>
+          <Variable name="RUBY_PATH">
+            <RoleInstanceValue xpath="/RoleEnvironment/CurrentInstance/LocalResources/LocalResource[@name='ruby']/@path" />
+          </Variable>
+        </Environment>
+      </Task>
+      <Task commandLine="installDependencies.cmd" executionContext="elevated">
+        <Environment>
+          <Variable name="RUBY_PATH">
+            <RoleInstanceValue xpath="/RoleEnvironment/CurrentInstance/LocalResources/LocalResource[@name='ruby']/@path" />
+          </Variable>
+        </Environment>
+      </Task>
+    </Startup>
+    <LocalResources>
+      <LocalStorage name="ruby" sizeInMB="1000" />
+    </LocalResources>
+    <Endpoints>
+      <InputEndpoint name="HttpIn" protocol="tcp" port="80" />
+    </Endpoints>
+    <Runtime>
+      <Environment>
+        <Variable name="PORT">
+          <RoleInstanceValue xpath="/RoleEnvironment/CurrentInstance/Endpoints/Endpoint[@name='HttpIn']/@port" />
+        </Variable>
+        <Variable name="EMULATED">
+          <RoleInstanceValue xpath="/RoleEnvironment/Deployment/@emulated" />
+        </Variable>
+      </Environment>
+      <EntryPoint>
+        <ProgramEntryPoint commandLine="run.cmd" setReadyOnProcessStart="true" />
+      </EntryPoint>
+    </Runtime>
+  </WorkerRole>
 </ServiceDefinition>
