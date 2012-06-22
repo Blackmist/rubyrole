@@ -1,11 +1,13 @@
-REM Strip the trailing backslash (if present)
-if %RUBY_PATH:~-1%==\ SET RUBY_PATH=%RUBY_PATH:~0,-1%
+REM Skip pathing stuff if we're running under the emulator
+if "%EMULATED%"=="true" goto :bundler
 
 cd /d "%~dp0"
 
-set PATH=%PATH%;%RUBY_PATH%\bin
-
+:bundler
 cd app
+
+REM update RubyGems
+call gem update --system
 
 REM Install bundler, which will install other gems
 call gem install bundler --no-ri --no-rdoc

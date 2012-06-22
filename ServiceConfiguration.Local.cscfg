@@ -1,7 +1,16 @@
 <?xml version="1.0"?>
-<ServiceConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" serviceName="RubyRole" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="2" osVersion="*">
+<ServiceConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" serviceName="RubyRole" osFamily="2" osVersion="*" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration">
   <Role name="WorkerRole">
-    <ConfigurationSettings />
+    <ConfigurationSettings>
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.Enabled" value="true" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountUsername" value="larryfr" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountEncryptedPassword" value="MIIBvgYJKoZIhvcNAQcDoIIBrzCCAasCAQAxggFvMIIBawIBADBTMD8xPTA7BgNVBAMMNFdpbmRvd3MoUikgQXp1cmUoVE0pIEVuY3J5cHRpb24gVG9vbCB2ZXJzaW9uIDEuNy4wLjACEEGGbkP61sihTDR/F5LuP00wDQYJKoZIhvcNAQEBBQAEggEAQmWZPw/JztX9oVGcxIfDVc8Yg6Y/KxoMAQ1vzr5AcA+CZDfvuLhS2ajfPVUD+noomo3kvl7+LCOxp0gd69O1Y/1vksl2o6pR8r01eaCOcmaMiCp1x1nenl+XNf1PBL2m9EeT2CPKNCM/N/gKpjMpvBTXIAuG1er9ASOTzqqsO3gxjl+3tiR7HiliZtzDzgs2KCr6yXsIFM3YvKsPbinbOnp7GLYxbAl+HhYIA6003hLUlvnLpaXOLzwoyRW1uLhgU/ifkiirCdLEJOSldZc8IySwUNJXbHoAK3Sdfo1+8mv0m8i2aWj+Bil19HezNthx/M3OQEyoLe1nd9SlUsth+jAzBgkqhkiG9w0BBwEwFAYIKoZIhvcNAwcECLpBRXQ5KwVngBAUOKBZUlYMrf9UqCrUUpwW" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountExpiration" value="2013-06-21T12:46:53.2170614-04:00" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteForwarder.Enabled" value="true" />
+    </ConfigurationSettings>
     <Instances count="1" />
+    <Certificates>
+      <Certificate name="Microsoft.WindowsAzure.Plugins.RemoteAccess.PasswordEncryption" thumbprint="4994638B6A1C4A6CF513E9D80F99AEC638B6481B" thumbprintAlgorithm="sha1" />
+    </Certificates>
   </Role>
 </ServiceConfiguration>
