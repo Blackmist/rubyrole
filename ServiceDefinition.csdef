@@ -1,6 +1,9 @@
 <?xml version="1.0"?>
 <ServiceDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="RubyRole" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition">
   <WorkerRole name="WorkerRole">
+    <Imports>
+      <Import moduleName="Caching" />
+    </Imports>
     <Startup>
       <Task commandLine="installRuby.cmd" executionContext="elevated">
         <Environment>
@@ -22,9 +25,13 @@
     </Startup>
     <LocalResources>
       <LocalStorage name="ruby" sizeInMB="1000" />
+      <LocalStorage name="Microsoft.WindowsAzure.Plugins.Caching.FileStore" sizeInMB="1000" cleanOnRoleRecycle="false" />
     </LocalResources>
     <Endpoints>
       <InputEndpoint name="HttpIn" protocol="tcp" port="80" />
+      <InternalEndpoint name="memcache_default" protocol="tcp">
+        <FixedPort port="11211" />
+      </InternalEndpoint>
     </Endpoints>
     <Runtime>
       <Environment>
