@@ -7,7 +7,7 @@ if %RUBY_PATH:~-1%==\ SET RUBY_PATH=%RUBY_PATH:~0,-1%
 cd /d "%~dp0"
 
 REM Download directly from rubyinstaller.org
-if not exists .\railsinstaller.exe powershell -c "(new-object System.Net.WebClient).DownloadFile('http://rubyforge.org/frs/download.php/75894/railsinstaller-2.1.0.exe', 'railsinstaller.exe')"
+powershell -c "(new-object System.Net.WebClient).DownloadFile('http://rubyforge.org/frs/download.php/75894/railsinstaller-2.1.0.exe', 'railsinstaller.exe')"
 
 REM Install Ruby and DevKit
 start /w railsinstaller.exe /verysilent /dir="%RUBY_PATH%"
