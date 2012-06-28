@@ -10,7 +10,7 @@ This sample will work with the [Windows Azure Other SDK], but if you install the
 
 1. Edit `app.rb` to do whatever you want. If this is a web app, be sure to listen on the port specified in the `PORT` environment variable (and for best results when running locally, listen on the IP address specified in the `ADDRESS` environment variable.)
 
-2. By default, the package will download RailsInstaller when the Cloud Service starts up in Windows Azure, but this can take a really long time to download. If you don't mind increasing deployment package size, you can download RailsInstaller ahead of time and save it as **railsinstaller.exe** in the **WorkerRole** directory, and that will be used to install Ruby into the environment. Little bit longer on the upload, but shaves time off the startup of the service environment.
+2. By default, the package will download RailsInstaller when the Cloud Service starts up in Windows Azure, but this can take a really long time to download. If you don't mind increasing deployment package size, you can download RailsInstaller ahead of time and save it as **railsinstaller.exe** in the **WorkerRole** directory, then modify run.cmd to comment out the download step. Little bit longer on the upload, but shaves time off the startup of the service environment.
 
 #'Other' SDK
 
